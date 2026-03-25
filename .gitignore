@@ -1,0 +1,15 @@
+# Flutter dependencies
+/.dart_tool/
+/.idea/
+/.vscode/
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+pubspec.lock
+
+# Misc
+*.iml
+*.swp
+*.swo
+*.DS_Store
