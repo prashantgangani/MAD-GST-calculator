@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../models/product.dart';
 import '../widgets/product_form.dart';
 import '../widgets/product_list.dart';
 import '../widgets/invoice_summary.dart';
@@ -32,16 +33,29 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-class InvoiceScreen extends StatelessWidget {
+class InvoiceScreen extends StatefulWidget {
   const InvoiceScreen({Key? key}) : super(key: key);
+
+  @override
+  State<InvoiceScreen> createState() => _InvoiceScreenState();
+}
+
+class _InvoiceScreenState extends State<InvoiceScreen> {
+  final List<Product> _products = [];
+
+  void _addProduct(Product product) {
+    setState(() {
+      _products.add(product);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: const [
-        ProductForm(),
-        Expanded(child: ProductList()),
-        InvoiceSummary(),
+      children: [
+        ProductForm(onAdd: _addProduct),
+        Expanded(child: ProductList(products: _products)),
+        InvoiceSummary(products: _products),
       ],
     );
   }

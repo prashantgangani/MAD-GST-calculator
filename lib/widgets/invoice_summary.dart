@@ -2,16 +2,14 @@ import 'package:flutter/material.dart';
 import '../models/product.dart';
 import '../services/gst_calculator.dart';
 
-// Dummy product list for prototype
-final List<Product> _products = [];
-
 class InvoiceSummary extends StatelessWidget {
-  const InvoiceSummary({Key? key}) : super(key: key);
+  final List<Product> products;
+  const InvoiceSummary({Key? key, required this.products}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     double totalCGST = 0, totalSGST = 0, totalAmount = 0;
-    for (var product in _products) {
+    for (var product in products) {
       totalCGST += GSTCalculator.calculateCGST(product);
       totalSGST += GSTCalculator.calculateSGST(product);
       totalAmount += GSTCalculator.calculateTotal(product);

@@ -3,7 +3,8 @@ import '../models/product.dart';
 import '../services/gst_calculator.dart';
 
 class ProductForm extends StatefulWidget {
-  const ProductForm({Key? key}) : super(key: key);
+  final void Function(Product) onAdd;
+  const ProductForm({Key? key, required this.onAdd}) : super(key: key);
 
   @override
   State<ProductForm> createState() => _ProductFormState();
@@ -22,8 +23,7 @@ class _ProductFormState extends State<ProductForm> {
         price: double.parse(_priceController.text),
         gstRate: _gstRate,
       );
-      // Add product to list (to be implemented with state management)
-      // ...
+      widget.onAdd(product);
       _nameController.clear();
       _priceController.clear();
       setState(() {
